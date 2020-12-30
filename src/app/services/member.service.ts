@@ -47,6 +47,14 @@ export class MemberService {
       )
   }
 
+  addMember(member: Member): Observable<Member> {
+    return this.http.post(this.MEMBERS_URL, member, this.httpOptions)
+      .pipe(
+        tap((newMember: Member) => this.log(`Add new Employee ID: ${newMember.id}`)),
+        catchError(this.handleError<Member>(`addMember`))
+      )
+  }
+
   private log(message: string) {
     this.messageService.add(`MemberService: ${message}`)
   }

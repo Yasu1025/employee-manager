@@ -1,5 +1,11 @@
 <h2>Employees List</h2>
 
+<div>
+  <label>Name:</label>
+  <input type="text" #memberName>
+  <button (click)="add(memberName.value); memberName.value = ''">Add</button>
+</div>
+
 <ul class="members">
   <li
     *ngFor="let member of members"
