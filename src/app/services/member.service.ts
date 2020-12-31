@@ -55,6 +55,28 @@ export class MemberService {
       )
   }
 
+  deleteMember(member: Member | number): Observable<Member> {
+    const id = typeof member === `number` ? member : member.id;
+    const url = `${this.MEMBERS_URL}/${id}`;
+    return this.http.delete<Member>(url, this.httpOptions)
+      .pipe(
+        tap(_ => this.log(`Delete ${id}`)),
+        catchError(this.handleError<Member>(`deleteMember`))
+      )
+  }
+
+  searchMembers(terms: string): Observable<Member[]> {
+    if(!terms.trim()) {
+      return of([]);
+    }
+    const url = `${this.MEMBERS_URL}/?name=${terms}`;
+    return this.http.get<Member[]>(url)
+      .pipe(
+        tap(_ => this.log(`Search: Match employees's name of ${terms}`)),
+        catchError(this.handleError<Member[]>(`searchMember`, []))
+      )
+  }
+
   private log(message: string) {
     this.messageService.add(`MemberService: ${message}`)
   }

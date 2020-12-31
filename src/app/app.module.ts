@@ -11,6 +11,7 @@ import { MemberDetailComponent } from './components/member-detail/member-detail.
 import { MessagesComponent } from './components/messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SearchMemberComponent } from './components/search-member/search-member.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MembersComponent,
     MemberDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    SearchMemberComponent
   ],
   imports: [
     BrowserModule,
